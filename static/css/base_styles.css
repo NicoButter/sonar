@@ -1,0 +1,129 @@
+body {
+    font-family: 'Rock Salt', cursive, sans-serif;
+    background-color: #121212;
+    /* Fondo oscuro */
+    color: #fff;
+    /* Texto blanco */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #000;
+    /* Fondo negro para el header */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #f44336;
+    /* Color rojo brillante */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #fff;
+}
+
+/* Main content */
+main {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Títulos */
+h1 {
+    font-size: 3rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #f44336;
+    /* Rojo brillante */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+h2,
+h3 {
+    font-family: 'Rock Salt', cursive;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Botones */
+button {
+    background-color: #f44336;
+    /* Rojo */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d32f2f;
+    /* Rojo más oscuro */
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para enlaces */
+a {
+    color: #f44336;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* Fondo de la página */
+body {
+    background-image: url('{% static "img/rock-texture.jpg" %}');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilo para el contenedor principal */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}

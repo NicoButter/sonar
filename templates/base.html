@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonar - Página de Bienvenida</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'about' %}">Acerca de</a></li>
+                <li><a href="{% url 'contact' %}">Contacto</a></li>
+                {% comment %} {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                {% endif %}
+            </ul> {% endcomment %}
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="landing">
+            <h1>Bienvenido a Sonar</h1>
+            <p>Explora la música, descubre nuevos artistas y mantente actualizado con lo último en el mundo del rock.</p>
+
+            {% comment %} {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}" class="btn-login">Iniciar sesión</a>
+            {% endif %} {% endcomment %}
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sonar. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
