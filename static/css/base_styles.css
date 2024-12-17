@@ -11,10 +11,59 @@ body {
 /* Header */
 header {
     background-color: #000;
-    /* Fondo negro para el header */
-    padding: 20px;
-    text-align: center;
+    /* padding: 20px 40px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    flex: 1;
+}
+
+.logo-img {
+    max-height: 250px;
+    /* Ajusta el tamaño del logo según sea necesario */
+}
+
+.page-title {
+    flex: 2;
+    text-align: center;
+}
+
+.page-title h1 {
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.auth-links {
+    flex: 1;
+    text-align: right;
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: #f44336;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: #fff;
 }
 
 header nav ul {

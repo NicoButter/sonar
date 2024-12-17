@@ -7,19 +7,49 @@ body {
 }
 
 header {
-    text-align: center;
-    padding: 100px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #222;
+}
+
+#header-left {
+    display: flex;
+    align-items: center;
 }
 
 #logo img {
-    max-width: 200px;
+    max-width: 150px;
     height: auto;
 }
 
 #slogan h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #f44336;
-    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#header-right {
+    display: flex;
+    align-items: center;
+}
+
+#header-right .btn-login,
+#header-right .btn-logout {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-left: 20px;
+}
+
+#header-right .btn-login:hover,
+#header-right .btn-logout:hover {
+    background-color: #d32f2f;
 }
 
 footer {
