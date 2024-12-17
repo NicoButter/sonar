@@ -42,8 +42,6 @@ header {
 .page-title h1 {
     color: #fff;
     font-size: 24px;
-    font-family: 'Bebas Neue', sans-serif;
-    text-transform: uppercase;
     margin: 0;
 }
 
@@ -100,7 +98,6 @@ main {
 /* Títulos */
 h1 {
     font-size: 3rem;
-    font-family: 'Bebas Neue', sans-serif;
     color: #f44336;
     /* Rojo brillante */
     margin-bottom: 20px;

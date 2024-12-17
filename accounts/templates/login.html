@@ -11,7 +11,6 @@
 
 {% block content %}
     <section id="login-section">
-        <h2>Iniciar sesión</h2>
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="form-group">
