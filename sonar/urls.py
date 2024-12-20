@@ -20,5 +20,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('accounts.urls')),  # Redirige a las URLs de la app accounts (que incluye la landing page)
+    path('', include('accounts.urls')),  # URLs de la app accounts (incluye login, logout, etc.)
+    path('dashboard/', include('dashboards.urls')),  # URLs para los dashboards
+    path('bandas/', include('bandas.urls')),  # URLs relacionadas con bandas
 ]
+

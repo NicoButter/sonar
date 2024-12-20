@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Banda</title>
+</head>
+<body>
+    <h1>{{ banda.nombre }}</h1>
+    <img src="{{ banda.imagen.url }}" alt="Imagen de {{ banda.nombre }}" style="max-width: 300px;">
+    <p><strong>Representante:</strong> {{ banda.representante.username }}</p>
+    <p><strong>Estilos Musicales:</strong> {{ banda.estilos_musicales.all|join:", " }}</p>
+    <p><strong>Biografía:</strong> {{ banda.biografia }}</p>
+    <p><strong>Lugar de Ensayo:</strong> {{ banda.lugar_ensayo }}</p>
+    <p><strong>Fecha de Creación:</strong> {{ banda.fecha_creacion }}</p>
+    <a href="{% url 'banda_list' %}">Volver a la lista de bandas</a>
+</body>
+</html>

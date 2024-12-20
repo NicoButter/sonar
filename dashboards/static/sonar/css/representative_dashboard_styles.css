@@ -1,0 +1,116 @@
+/* Container for Dashboard Content */
+.dashboard-container {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+.dashboard-container h2,
+.dashboard-container h3 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+/* Forms */
+.dashboard-container form {
+    margin-bottom: 20px;
+}
+
+.dashboard-container form label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.dashboard-container form input[type="text"],
+.dashboard-container form input[type="date"],
+.dashboard-container form input[type="file"],
+.dashboard-container form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.dashboard-container form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.dashboard-container form button:hover {
+    background-color: #45a049;
+}
+
+/* Integrantes Section */
+.integrantes-list {
+    padding-left: 20px;
+}
+
+.integrantes-list li {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.integrantes-list img {
+    max-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Images and Demos */
+.banda-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.banda-demos {
+    margin-top: 20px;
+}
+
+.banda-demos a {
+    display: block;
+    margin-bottom: 10px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.banda-demos a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .dashboard-container form label,
+    .dashboard-container form input,
+    .dashboard-container form button {
+        font-size: 0.9em;
+    }
+
+    .integrantes-list img {
+        max-width: 40px;
+        height: 40px;
+    }
+}
