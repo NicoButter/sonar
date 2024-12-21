@@ -11,16 +11,20 @@
 {% endblock %}
 
 {% block content %}
-<h2>Bienvenido, {{ request.user.username }}</h2>
 
-<h3>Banda: {{ banda.nombre }}</h3>
-<p>Biografía: {{ banda.biografia }}</p>
-<p>Estilo(s) musical(es): 
-    {% for estilo in banda.estilos_musicales.all %}
-        {{ estilo.nombre }}{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-<img src="{{ banda.imagen.url }}" alt="Imagen de la banda" style="max-width: 200px;">
+<div class="welcome-section">
+    <h2>Bienvenido, {{ request.user.username }}</h2>
+    <h3>Banda: {{ banda.nombre }}</h3>
+    <p>Biografía: {{ banda.biografia }}</p>
+    <p>Estilo(s) musical(es): 
+        {% for estilo in banda.estilos_musicales.all %}
+            {{ estilo.nombre }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <img src="{{ banda.imagen.url }}" alt="Imagen de la banda">
+</div>
+
+<hr>
 
 <div class="dashboard-cards">
     <!-- Tarjeta para Agregar Banda -->
