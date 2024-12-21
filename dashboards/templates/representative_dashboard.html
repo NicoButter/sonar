@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}Dashboard Representante{% endblock %}
+
 {% block header_title %}Dashboard de {{ banda.nombre }}{% endblock %}
 
-{% block esxtra_styles %}
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'dashboards/css/representative_dashboard_styles.css' %}">
 {% endblock %}
 
