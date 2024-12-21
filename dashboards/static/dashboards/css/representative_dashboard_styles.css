@@ -1,0 +1,58 @@
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajuste para pantallas más pequeñas */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 1.5rem;
+    text-align: center; /* Centrar el contenido dentro de la tarjeta */
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-body p {
+    color: #666;
+}
+
+.btn {
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}

@@ -10,7 +10,7 @@ def representative_dashboard(request):
     # Lógica para cargar los datos de la banda asociada
     banda = getattr(request.user, 'banda', None)  # Obtener la banda del representante
     context = {'banda': banda}
-    return render(request, 'dashboard/representative_dashboard.html', context)
+    return render(request, 'representative_dashboard.html', context)
 
 @login_required
 def admin_dashboard(request):

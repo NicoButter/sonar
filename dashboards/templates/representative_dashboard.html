@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}Dashboard Representante{% endblock %}
 {% block header_title %}Dashboard de {{ banda.nombre }}{% endblock %}
 
 {% block esxtra_styles %}
-    <link rel="stylesheet" href="{% static 'accounts/css/representative_dashboard_styles.css' %}">
-{% endblock %} 
+    <link rel="stylesheet" href="{% static 'dashboards/css/representative_dashboard_styles.css' %}">
+{% endblock %}
 
 {% block content %}
 <h2>Bienvenido, {{ request.user.username }}</h2>
@@ -21,45 +20,79 @@
 </p>
 <img src="{{ banda.imagen.url }}" alt="Imagen de la banda" style="max-width: 200px;">
 
-<h3>Agregar Integrante</h3>
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="add_integrante">
-    <label>Rol:</label>
-    <input type="text" name="rol" required>
-    <label>Instrumentos favoritos:</label>
-    <input type="text" name="instrumentos_favoritos" required>
-    <label>Fecha de ingreso:</label>
-    <input type="date" name="fecha_ingreso" required>
-    <label>Género preferido:</label>
-    <input type="text" name="genero_preferido">
-    <label>Descripción personal:</label>
-    <textarea name="descripcion_personal"></textarea>
-    <button type="submit">Agregar</button>
-</form>
+<div class="dashboard-cards">
+    <!-- Tarjeta para Agregar Banda -->
+    {% if banda %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ya tienes una banda</h5>
+                <p>Ya puedes gestionar los integrantes, la biografía, y demás detalles.</p>
+                <a href="{% url 'edit_banda' %}" class="btn btn-info">Gestionar Banda</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Agregar Banda</h5>
+                <p>Aún no has asignado una banda, por favor hazlo aquí.</p>
+                <a href="{% url 'create_banda' %}" class="btn btn-primary">Agregar Banda</a>
+            </div>
+        </div>
+    {% endif %}
 
-<h3>Integrantes</h3>
-<ul>
-    {% for integrante in integrantes %}
-    <li>{{ integrante.rol }} - {{ integrante.instrumentos_favoritos }}</li>
-    {% endfor %}
-</ul>
+    <!-- Tarjeta para Agregar Biografía -->
+    {% if not banda.biografia %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Agregar Biografía</h5>
+                <p>Agrega una biografía de la banda para compartir más información sobre ella.</p>
+                {% comment %} <a href="{% url 'edit_biografia' %}" class="btn btn-primary">Agregar Biografía</a> {% endcomment %}
+            </div>
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Biografía Existente</h5>
+                <p>Ya tienes una biografía asociada a la banda.</p>
+            </div>
+        </div>
+    {% endif %}
 
-<h3>Subir Demo</h3>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="upload_demo">
-    <label>Archivo Demo:</label>
-    <input type="file" name="demos">
-    <button type="submit">Subir</button>
-</form>
+    <!-- Tarjeta para Agregar Integrantes -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Agregar Integrantes</h5>
+            <p>Agrega los integrantes de la banda.</p>
+            {% comment %} <a href="{% url 'add_integrante' %}" class="btn btn-primary">Agregar Integrante</a> {% endcomment %}
+        </div>
+    </div>
 
-<h3>Subir Imagen</h3>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="upload_imagen">
-    <label>Imagen:</label>
-    <input type="file" name="imagen">
-    <button type="submit">Subir</button>
-</form>
+    <!-- Tarjeta para Subir Imagen -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Subir Imagen</h5>
+            <p>Sube imágenes para tu banda.</p>
+            {% comment %} <a href="{% url 'upload_imagen' %}" class="btn btn-primary">Subir Imagen</a> {% endcomment %}
+        </div>
+    </div>
+
+    <!-- Tarjeta para Subir Demos -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Subir Demo</h5>
+            <p>Sube los demos de tu banda (máximo 4 archivos).</p>
+            {% comment %} <a href="{% url 'upload_demo' %}" class="btn btn-primary">Subir Demo</a> {% endcomment %}
+        </div>
+    </div>
+
+    <!-- Tarjeta para Salir -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Salir</h5>
+            <p>Cerrar sesión para salir del dashboard.</p>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
