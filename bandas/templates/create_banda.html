@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Banda</title>
-</head>
-<body>
-    <h1>Crear Nueva Banda</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Crear Banda</button>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/create_banda_styles.css' %}">
+{% endblock %}
+
+{% block title %}Agregar Banda{% endblock %}
+
+{% block header_title %}¡Agrega tu banda aquí!{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Crear una nueva banda</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nombre">Nombre de la banda:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Banda</button>
     </form>
-    <a href="{% url 'banda_list' %}">Volver a la lista de bandas</a>
-</body>
-</html>
+  </div>
+{% endblock %}

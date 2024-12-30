@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from bandas.models import Banda, Integrante, EstiloMusical
-from .forms import BandaForm
+from .forms import BandaForm, IntegranteForm
+import os
+from django.conf import settings
+from django.core.files import File
+from django.core.exceptions import PermissionDenied
 
 #--------------------------------------------------------------------------------------------------------------
 
@@ -56,32 +61,79 @@ def banda_list(request):
 
 #--------------------------------------------------------------------------------------------------------------
 
-@login_required
-def create_banda(request):
+def crear_integrante(request):
     if request.method == 'POST':
-        form = BandaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('banda_list')  # Redirige a la lista de bandas después de crearla
+        integrante_form = IntegranteForm(request.POST, request.FILES)
+        if integrante_form.is_valid():
+            integrante_form.save()
+            return redirect('some_success_url')  # Redirige a una página de éxito o a la lista de bandas
     else:
-        form = BandaForm()
-    return render(request, 'bandas/create_banda.html', {'form': form})
+        integrante_form = IntegranteForm()
+
+    return render(request, 'bandas/crear_integrante.html', {'integrante_form': integrante_form})
 
 #--------------------------------------------------------------------------------------------------------------
 
-def banda_detail(request, pk):
-    banda = get_object_or_404(Banda, pk=pk)  # Obtén la banda o devuelve 404 si no existe
+def banda_detail(request, banda_id):
+    banda = get_object_or_404(Banda, banda_id=banda_id)  # Obtén la banda o devuelve 404 si no existe
     return render(request, 'bandas/banda_detail.html', {'banda': banda})
 
-def edit_banda(request, pk):
-    banda = get_object_or_404(Banda, pk=pk)  # Obtén la banda a editar
+#--------------------------------------------------------------------------------------------------------------
+
+def edit_banda(request, banda_id):
+    banda = get_object_or_404(Banda, pk=banda_id)  # Usa banda_id en lugar de pk
 
     if request.method == "POST":
         form = BandaForm(request.POST, request.FILES, instance=banda)
         if form.is_valid():
             form.save()  # Guarda los cambios realizados
-            return redirect('banda_detail', pk=banda.pk)  # Redirige a los detalles de la banda
+            return redirect('banda_detail', banda_id=banda.id)  # Redirige a los detalles de la banda
     else:
         form = BandaForm(instance=banda)
 
-    return render(request, 'bandas/edit_banda.html', {'form': form, 'banda': banda})
+    return render(request, 'edit_banda.html', {'form': form, 'banda': banda})
+
+#--------------------------------------------------------------------------------------------------------------
+
+@login_required
+def create_banda(request):
+    if request.method == 'POST':
+        # Crear un formulario solo con el nombre de la banda
+        nombre_banda = request.POST.get('nombre')
+        if nombre_banda:
+            # Crear la banda solo con el nombre, sin el representante por ahora
+            banda = Banda.objects.create(nombre=nombre_banda)
+            
+            # Asignar el representante al usuario logueado
+            banda.representante = request.user
+
+            # Asignar imagen por defecto
+            default_image_path = os.path.join(settings.BASE_DIR, 'static', 'images', 'no-image.png')
+            with open(default_image_path, 'rb') as f:
+                banda.imagen.save('no-image.png', File(f))
+
+            banda.save()
+
+            # Redirigir a la vista de edición para agregar más detalles
+            return redirect('representative_dashboard.html')
+    else:
+        return render(request, 'create_banda.html')
+
+#--------------------------------------------------------------------------------------------------------------
+
+@login_required
+def eliminar_banda(request, banda_id):
+    # Obtener la banda por ID
+    banda = get_object_or_404(Banda, id=banda_id)
+
+    # Verificar que el usuario logueado sea el representante de la banda
+    if banda.representante != request.user:
+        raise PermissionDenied("No tienes permiso para eliminar esta banda.")
+
+    # Eliminar la banda
+    banda.delete()
+
+    # Redirigir a la vista de dashboard del representante
+    return redirect('representative_dashboard')
+
+#--------------------------------------------------------------------------------------------------------------

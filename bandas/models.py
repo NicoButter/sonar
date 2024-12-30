@@ -31,7 +31,7 @@ def integrante_imagen_directory_path(instance, filename):
 
 class Banda(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
-    representante = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name='banda')
+    representante = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name='banda', null=True, blank=True)
     estilos_musicales = models.ManyToManyField(EstiloMusical)
     biografia = models.TextField()
     demos = models.FileField(upload_to=banda_directory_path, blank=True, null=True)

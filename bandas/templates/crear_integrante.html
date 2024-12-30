@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/create_banda_styles.css' %}">
+{% endblock %}
+
+{% block title %}Agregar Integrante{% endblock %}
+
+{% block header_title %}Agrega un Integrante a la Banda{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="page-title">Agregar Integrante</h2>
+        
+        <form method="POST" enctype="multipart/form-data" class="integrante-form">
+            {% csrf_token %}
+            
+            <div class="form-section">
+                <h3 class="form-title">Información del Integrante</h3>
+                {{ integrante_form.as_p }}
+            </div>
+            
+            <button type="submit" class="btn btn-submit">Agregar Integrante</button>
+        </form>
+    </div>
+{% endblock %}
