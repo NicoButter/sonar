@@ -1,0 +1,66 @@
+/* Estilos generales para el formulario de edición de biografía */
+.container {
+    max-width: 800px;
+    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    /* Texto blanco */
+}
+
+h2 {
+    font-size: 2rem;
+    color: #f44336;
+    /* Rojo brillante */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Estilo del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form .form-row {
+    margin-bottom: 10px;
+}
+
+/* Estilo del campo de texto (biografía) */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Fondo oscuro */
+    color: #fff;
+    resize: vertical;
+}
+
+/* Estilo de los botones */
+button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #f44336;
+    /* Rojo brillante */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d32f2f;
+    /* Rojo oscuro */
+}
+
+/* Espaciado y estilo de la parte inferior */
+body {
+    padding-bottom: 20px;
+}

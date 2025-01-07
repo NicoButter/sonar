@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Editar Banda{% endblock %}
+
+{% block header_title %}Editar Banda: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/edit_banda_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="dashboard-cards">
+            <!-- Tarjeta para Editar Banda -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar Banda</h5>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </form>
+                    <!-- Botón para regresar al dashboard -->
+                    <a href="{% url 'representative_dashboard' %}" class="btn btn-secondary mt-3">Regresar al Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta para Subir Imagen -->
+            {% if banda %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestionar Imagen</h5>
+                        <p>Sube o edita la imagen de tu banda.</p>
+                        <a href="{% url 'upload_imagen' banda.id %}" class="btn btn-primary">Subir Imagen</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Tarjeta para Subir Demos -->
+            {% if banda %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Subir Demos</h5>
+                        <p>Sube los demos de tu banda (máximo 4 archivos).</p>
+                        <a href="{% url 'upload_demo' banda.id %}" class="btn btn-primary">Subir Demo</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Tarjeta para Editar Biografía -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar Biografía de la Banda</h5>
+                    <p>Haz clic para editar la biografía de la banda.</p>
+                    <a href="{% url 'edit_biografia' banda.id %}" class="btn btn-warning">Editar Biografía</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta para Editar Integrantes -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar Integrantes</h5>
+                    <p>Haz clic para agregar o editar los integrantes de la banda.</p>
+                    <a href="{% url 'edit_integrantes' banda.id %}" class="btn btn-info">Editar Integrantes</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

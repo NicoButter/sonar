@@ -2,55 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from bandas.models import Banda, Integrante, EstiloMusical
-from .forms import BandaForm, IntegranteForm
+from .forms import BandaForm, IntegranteForm, BiografiaForm
 import os
 from django.conf import settings
 from django.core.files import File
 from django.core.exceptions import PermissionDenied
-
-#--------------------------------------------------------------------------------------------------------------
-
-@login_required
-def representative_dashboard(request):
-    if not request.user.is_representative:
-        return redirect('landing_page')  # Redirigir si el usuario no es representante
-
-    # Obtener o crear la banda asociada al representante
-    banda, created = Banda.objects.get_or_create(representante=request.user)
-
-    if request.method == "POST":
-        if 'add_integrante' in request.POST:
-            # Agregar un integrante
-            rol = request.POST['rol']
-            instrumentos = request.POST['instrumentos_favoritos']
-            fecha_ingreso = request.POST['fecha_ingreso']
-            genero = request.POST['genero_preferido']
-            descripcion = request.POST['descripcion_personal']
-            Integrante.objects.create(
-                banda=banda,
-                rol=rol,
-                instrumentos_favoritos=instrumentos,
-                fecha_ingreso=fecha_ingreso,
-                genero_preferido=genero,
-                descripcion_personal=descripcion
-            )
-        elif 'upload_demo' in request.POST:
-            # Subir un demo
-            banda.demos = request.FILES['demos']
-            banda.save()
-        elif 'upload_imagen' in request.POST:
-            # Subir una imagen
-            banda.imagen = request.FILES['imagen']
-            banda.save()
-
-    integrantes = banda.integrantes.all()
-    estilos = EstiloMusical.objects.all()
-
-    return render(request, 'dashboard/representative_dashboard.html', {
-        'banda': banda,
-        'integrantes': integrantes,
-        'estilos': estilos,
-    })
 
 #--------------------------------------------------------------------------------------------------------------
 
@@ -75,23 +31,24 @@ def crear_integrante(request):
 #--------------------------------------------------------------------------------------------------------------
 
 def banda_detail(request, banda_id):
-    banda = get_object_or_404(Banda, banda_id=banda_id)  # Obtén la banda o devuelve 404 si no existe
+    banda = get_object_or_404(Banda, id=banda_id)  # Obtén la banda o devuelve 404 si no existe
     return render(request, 'bandas/banda_detail.html', {'banda': banda})
 
 #--------------------------------------------------------------------------------------------------------------
 
+@login_required
 def edit_banda(request, banda_id):
-    banda = get_object_or_404(Banda, pk=banda_id)  # Usa banda_id en lugar de pk
+    banda = get_object_or_404(Banda, id=banda_id)  # Obtén la banda por ID
 
     if request.method == "POST":
-        form = BandaForm(request.POST, request.FILES, instance=banda)
+        form = BandaForm(request.POST, request.FILES, instance=banda)  # Asocia el formulario con la banda
         if form.is_valid():
-            form.save()  # Guarda los cambios realizados
-            return redirect('banda_detail', banda_id=banda.id)  # Redirige a los detalles de la banda
+            form.save()  # Guarda los cambios
+            return redirect('banda_detail', banda_id=banda.id)  # Redirige a la página de detalles de la banda
     else:
-        form = BandaForm(instance=banda)
+        form = BandaForm(instance=banda)  # Si no es un POST, muestra el formulario con los datos de la banda
 
-    return render(request, 'edit_banda.html', {'form': form, 'banda': banda})
+    return render(request, 'bandas/edit_banda.html', {'form': form, 'banda': banda})
 
 #--------------------------------------------------------------------------------------------------------------
 
@@ -137,3 +94,55 @@ def eliminar_banda(request, banda_id):
     return redirect('representative_dashboard')
 
 #--------------------------------------------------------------------------------------------------------------
+
+def upload_imagen(request, banda_id):
+    # Lógica para manejar la subida de imágenes
+    return render(request, 'bandas/upload_imagen.html', {'banda_id': banda_id})
+
+#--------------------------------------------------------------------------------------------------------------
+
+@login_required
+def upload_demo(request, banda_id):
+    if request.method == "POST":
+        banda = get_object_or_404(Banda, id=banda_id)  # Obtener la banda por su ID
+        banda.demos = request.FILES['demos']
+        banda.save()
+        messages.success(request, "Demo subido correctamente.")
+        return redirect('representative_dashboard')  # Redirigir al dashboard del representante
+    else:
+        messages.error(request, "Método no permitido.")
+        return redirect('representative_dashboard')
+    
+
+#--------------------------------------------------------------------------------------------------------------
+
+def editar_biografia(request, banda_id):
+    banda = get_object_or_404(Banda, id=banda_id)
+    
+    if request.method == 'POST':
+        form = BiografiaForm(request.POST, instance=banda)
+        if form.is_valid():
+            form.save()
+            return redirect('banda_detail', banda_id=banda.id)  # Redirige a la vista de detalles de la banda
+    else:
+        form = BiografiaForm(instance=banda)
+
+    return render(request, 'bandas/edit_biografia.html', {'form': form, 'banda': banda})
+
+#--------------------------------------------------------------------------------------------------------------
+
+
+def editar_integrantes(request, banda_id):
+    banda = get_object_or_404(Banda, id=banda_id)
+
+    if request.method == 'POST':
+        form = IntegranteForm(request.POST, request.FILES)
+        if form.is_valid():
+            integrante = form.save(commit=False)
+            integrante.banda = banda
+            integrante.save()
+            return redirect('banda_detail', banda_id=banda.id)  # Redirige a los detalles de la banda
+    else:
+        form = IntegranteForm()
+
+    return render(request, 'bandas/edit_integrantes.html', {'form': form, 'banda': banda})

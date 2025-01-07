@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Editar Banda{% endblock %}
+
+{% block header_title %}Editar Biografia: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/edit_biografia_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Editar Biografía de la Banda</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Guardar Biografía</button>
+        </form>
+
+        <a href="{% url 'representative_dashboard' %}" class="btn btn-secondary mt-3">Regresar al Dashboard</a>
+    </div>
+{% endblock %}

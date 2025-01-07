@@ -4,7 +4,7 @@
 
 {% block title %}Dashboard Representante{% endblock %}
 
-{% block header_title %}Dashboard de {{ banda.nombre }}{% endblock %}
+{% block header_title %}Dashboard de {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
 
 {% block extra_styles %}
     <link rel="stylesheet" href="{% static 'dashboards/css/representative_dashboard_styles.css' %}">
@@ -12,109 +12,48 @@
 
 {% block content %}
 
-<div class="welcome-section">
-    <h2>Bienvenido, {{ request.user.username }}</h2>
-    {% if banda %}
-        <h3>Banda: {{ banda.nombre }}</h3>
-        <p>Biografía: {{ banda.biografia }}</p>
+<!-- Tarjeta de Bienvenida -->
+<div class="card welcome-card">
+    <div class="card-body">
+        <h2>Bienvenido, {{ request.user.username }}</h2>
+        <h3>Banda: {{ banda.nombre|default:"No asignada" }}</h3>
+        <p>Biografía: {{ banda.biografia|default:"No definida" }}</p>
         <p>Estilo(s) musical(es): 
-            {% for estilo in banda.estilos_musicales.all %}
-                {{ estilo.nombre }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
+            {% if banda and banda.estilos_musicales.exists %}
+                {% for estilo in banda.estilos_musicales.all %}
+                    {{ estilo.nombre }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                No definidos
+            {% endif %}
         </p>
-        <img src="{{ banda.imagen.url }}" alt="Imagen de la banda">
-    {% else %}
-        <h3>Aún no has asignado una banda</h3>
-        <p>Por favor, crea una banda para gestionar los detalles.</p>
-    {% endif %}
+        {% if banda and banda.imagen %}
+            <img src="{{ banda.imagen.url }}" alt="Imagen de la banda" class="band-image">
+        {% else %}
+            <p>No hay imagen disponible.</p>
+        {% endif %}
+    </div>
 </div>
 
 <hr>
 
-<div class="dashboard-cards">
-    <!-- Tarjeta para Agregar Banda -->
-    {% if banda %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Ya tienes una banda</h5>
-                <p>Ya puedes gestionar los integrantes, la biografía, y demás detalles.</p>
-                <a href="{% url 'edit_banda' banda.id %}" class="btn btn-info">Gestionar Banda</a>
-            </div>
-        </div>
-
-        <!-- Tarjeta para Editar Biografía -->
-        {% if not banda.biografia %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Editar Biografía</h5>
-                    <p>Agrega una biografía de la banda para compartir más información sobre ella.</p>
-                    {% comment %} <a href="{% url 'edit_biografia' %}" class="btn btn-primary">Agregar Biografía</a> {% endcomment %}
-                </div>
-            </div>
-        {% else %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Biografía Existente</h5>
-                    <p>Ya tienes una biografía asociada a la banda.</p>
-                </div>
-            </div>
-        {% endif %}
-
-        <!-- Tarjeta para Editar Integrantes -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Editar Integrantes</h5>
-                <p>Edita los integrantes de la banda.</p>
-                {% comment %} <a href="{% url 'add_integrante' %}" class="btn btn-primary">Agregar Integrante</a> {% endcomment %}
-            </div>
-        </div>
-
-        <!-- Tarjeta para Subir Imagen -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Subir Imagen</h5>
-                <p>Sube imágenes para tu banda.</p>
-                {% comment %} <a href="{% url 'upload_imagen' %}" class="btn btn-primary">Subir Imagen</a> {% endcomment %}
-            </div>
-        </div>
-
-        <!-- Tarjeta para Subir Demos -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Subir Demos</h5>
-                <p>Sube los demos de tu banda (máximo 4 archivos).</p>
-                {% comment %} <a href="{% url 'upload_demo' %}" class="btn btn-primary">Subir Demo</a> {% endcomment %}
-            </div>
-        </div>
-    {% else %}
-        <!-- Tarjeta para Agregar Banda (cuando no existe una banda) -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Agregar Banda</h5>
-                <p>Aún no has asignado una banda, por favor hazlo aquí.</p>
-                <a href="{% url 'create_banda' %}" class="btn btn-primary">Agregar Banda</a>
-            </div>
-        </div>
-    {% endif %}
-
-    <!-- Tarjeta para Salir -->
+<!-- Botón para gestionar la banda -->
+{% if banda %}
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Salir</h5>
-            <p>Cerrar sesión para salir del dashboard.</p>
-            <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+            <h5 class="card-title">Gestionar Banda</h5>
+            <p>Haz clic aquí para editar los datos de tu banda.</p>
+            <a href="{% url 'edit_banda' banda.id %}" class="btn btn-info">Editar Banda</a>
         </div>
     </div>
-   
+{% else %}
     <div class="card">
-        {% if banda.representante == request.user %}
-        <form action="{% url 'eliminar_banda' banda.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Eliminar Banda</button>
-        </form>
-        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">Agregar Banda</h5>
+            <p>Aún no has asignado una banda, por favor hazlo aquí.</p>
+            <a href="{% url 'create_banda' %}" class="btn btn-primary">Agregar Banda</a>
+        </div>
     </div>
-
-</div>
+{% endif %}
 
 {% endblock %}
