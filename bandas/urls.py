@@ -9,6 +9,7 @@ urlpatterns = [
     path('editar_integrantes/<int:banda_id>/', views.editar_integrantes, name='edit_integrantes'),
     path('<int:banda_id>/', views.banda_detail, name='banda_detail'),  # Detalle de una banda
     path('<int:banda_id>/edit/', views.edit_banda, name='edit_banda'),  # Editar una banda
-    path('<int:banda_id>/upload-imagen/', views.upload_imagen, name='upload_imagen'),  # Subir imagen
+    path('bandas/<int:banda_id>/upload-imagen/', views.upload_imagen, name='upload_imagen'),
+    path('eliminar-imagen/<int:imagen_id>/', views.eliminar_imagen, name='eliminar_imagen'),
     path('upload-demo/<int:banda_id>/', views.upload_demo, name='upload_demo')
 ]

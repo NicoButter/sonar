@@ -16,16 +16,16 @@ class EstiloMusical(models.Model):
 #-------------------------------------------------------------------------------------------------------------------
 
 def banda_directory_path(instance, filename):
-    # Crea el directorio con el nombre de la banda para los demos
-    return os.path.join('demos', slugify(instance.nombre), filename)
+    return os.path.join('bandas', slugify(instance.nombre), 'demos', filename)
 
 def banda_imagen_directory_path(instance, filename):
-    # Crea el directorio con el nombre de la banda para las imágenes
-    return os.path.join('bandas', slugify(instance.nombre), filename)
+    return os.path.join('bandas', slugify(instance.banda.nombre), 'imagenes_de_la_banda', filename)
 
 def integrante_imagen_directory_path(instance, filename):
-    # Crea el directorio con el nombre de la banda y subdirectorio para integrantes
-    return os.path.join('bandas', slugify(instance.banda.nombre), 'integrantes', filename)
+    return os.path.join('bandas', slugify(instance.banda.nombre), 'imagenes_de_integrantes', filename)
+
+def flyer_imagen_directory_path(instance, filename):
+    return os.path.join('bandas', slugify(instance.banda.nombre), 'flyers', filename)
 
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -74,3 +74,27 @@ class Integrante(models.Model):
 
     class Meta:
         unique_together = ('banda', 'rol')  # Asegura que cada banda no tenga más de un integrante con el mismo rol
+
+#-------------------------------------------------------------------------------------------------------------------
+
+class ImagenBanda(models.Model):
+    banda = models.ForeignKey(Banda, on_delete=models.CASCADE, related_name='imagenes')
+    imagen = models.ImageField(upload_to=banda_imagen_directory_path)
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Imagen de {self.banda.nombre} - {self.id}"
+    
+    class Meta:
+        # Limitar a un máximo de 5 imágenes por banda
+        unique_together = ('banda', 'id')  # Esto no es necesario, pero te lo dejo como referencia
+
+#-------------------------------------------------------------------------------------------------------------------
+
+class Flyer(models.Model):
+    banda = models.ForeignKey(Banda, on_delete=models.CASCADE, related_name='flyers')
+    imagen = models.ImageField(upload_to=flyer_imagen_directory_path)
+    descripcion = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self):
+        return f"Flyer de {self.banda.nombre}"

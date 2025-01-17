@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from bandas.models import Banda, Integrante, EstiloMusical
+from .models import Banda, ImagenBanda
 from .forms import BandaForm, IntegranteForm, BiografiaForm
 import os
 from django.conf import settings
@@ -96,8 +96,37 @@ def eliminar_banda(request, banda_id):
 #--------------------------------------------------------------------------------------------------------------
 
 def upload_imagen(request, banda_id):
-    # Lógica para manejar la subida de imágenes
-    return render(request, 'bandas/upload_imagen.html', {'banda_id': banda_id})
+    banda = Banda.objects.get(id=banda_id)
+
+    # Procesar las imágenes cuando se suban
+    if request.method == 'POST':
+        if len(request.FILES.getlist('imagenes')) > 5:
+            messages.error(request, "Solo puedes subir un máximo de 5 imágenes.")
+            return redirect('upload_imagen', banda_id=banda_id)
+        
+        # Guardar las imágenes subidas
+        for imagen in request.FILES.getlist('imagenes'):
+            ImagenBanda.objects.create(banda=banda, imagen=imagen)
+        
+        messages.success(request, "Imágenes subidas exitosamente.")
+        return redirect('upload_imagen', banda_id=banda_id)
+
+    # Obtener las imágenes subidas previamente
+    imagenes = ImagenBanda.objects.filter(banda=banda)
+
+    return render(request, 'bandas/upload_imagen.html', {
+        'banda': banda,
+        'imagenes': imagenes,
+    })
+
+#--------------------------------------------------------------------------------------------------------------
+
+def eliminar_imagen(request, imagen_id):
+    imagen = ImagenBanda.objects.get(id=imagen_id)
+    banda_id = imagen.banda.id
+    imagen.delete()
+    messages.success(request, "Imagen eliminada exitosamente.")
+    return redirect('upload_imagen', banda_id=banda_id)
 
 #--------------------------------------------------------------------------------------------------------------
 

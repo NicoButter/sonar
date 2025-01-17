@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Editar Banda{% endblock %}
+
+{% block header_title %}Edita Imágenes: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/upload_imagen_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <!-- Mostrar las imágenes subidas anteriormente -->
+    <h3>Imágenes Subidas:</h3>
+    <div class="row">
+      {% for imagen in imagenes %}
+        <div class="col-md-3">
+          <div class="card">
+            <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="Imagen de la Banda">
+            <div class="card-body">
+              <a href="{% url 'eliminar_imagen' imagen.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No hay imágenes subidas aún.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Formulario para subir imágenes -->
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="imagenes">Seleccionar Imágenes (máximo 5):</label>
+      <input type="file" name="imagenes" multiple required>
+      <button type="submit" class="btn btn-success">Subir Imágenes</button>
+    </form>
+  </div>
+{% endblock %}
