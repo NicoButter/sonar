@@ -2,9 +2,9 @@
 
 {% load static %}
 
-{% block title %}Editar Banda{% endblock %}
+{% block title %}Editar Imágenes de Banda{% endblock %}
 
-{% block header_title %}Edita Imágenes: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
+{% block header_title %}Gestionar Imágenes de: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
 
 {% block extra_styles %}
     <link rel="stylesheet" href="{% static 'bandas/css/upload_imagen_styles.css' %}">
@@ -12,10 +12,10 @@
 
 {% block content %}
   <div class="container">
-    <!-- Mostrar las imágenes subidas anteriormente -->
+    <!-- Mostrar imágenes subidas como tarjetas -->
     <h3>Imágenes Subidas:</h3>
     <div class="row">
-      {% for imagen in imagenes %}
+      {% for imagen in banda.imagenes.all %}
         <div class="col-md-3">
           <div class="card">
             <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="Imagen de la Banda">
@@ -29,7 +29,15 @@
       {% endfor %}
     </div>
 
-    <!-- Formulario para subir imágenes -->
+    <!-- Enlace para editar la imagen representativa -->
+    <div class="mt-4">
+      <h4>Actualizar Imagen Representativa</h4>
+      <p>Haz clic para elegir la imagen principal de la banda.</p>
+      <a href="{% url 'actualizar_imagen_representativa' banda.id %}" class="btn btn-primary">Editar Imagen Representativa</a>
+    </div>
+
+    <!-- Formulario para subir nuevas imágenes -->
+    <h3 class="mt-4">Subir Nueva Imagen:</h3>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <label for="imagenes">Seleccionar Imágenes (máximo 5):</label>

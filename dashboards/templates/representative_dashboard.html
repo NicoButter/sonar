@@ -27,10 +27,10 @@
                 No definidos
             {% endif %}
         </p>
-        {% if banda and banda.imagen %}
-            <img src="{{ banda.imagen.url }}" alt="Imagen de la banda" class="band-image">
+        {% if banda and banda.imagen_principal %}
+            <img src="{{ banda.imagen_principal.url }}" alt="Imagen representativa de la banda" class="band-image">
         {% else %}
-            <p>No hay imagen disponible.</p>
+            <p>No hay imagen representativa disponible.</p>
         {% endif %}
     </div>
 </div>

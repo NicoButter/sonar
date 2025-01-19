@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Banda, ImagenBanda
-from .forms import BandaForm, IntegranteForm, BiografiaForm
+from .forms import BandaForm, IntegranteForm, BiografiaForm, ImagenRepresentativaForm
 import os
 from django.conf import settings
 from django.core.files import File
@@ -160,7 +160,6 @@ def editar_biografia(request, banda_id):
 
 #--------------------------------------------------------------------------------------------------------------
 
-
 def editar_integrantes(request, banda_id):
     banda = get_object_or_404(Banda, id=banda_id)
 
@@ -175,3 +174,18 @@ def editar_integrantes(request, banda_id):
         form = IntegranteForm()
 
     return render(request, 'bandas/edit_integrantes.html', {'form': form, 'banda': banda})
+
+#--------------------------------------------------------------------------------------------------------------
+
+def actualizar_imagen_representativa(request, banda_id):
+    banda = get_object_or_404(Banda, id=banda_id)
+    if request.method == 'POST':
+        form = ImagenRepresentativaForm(request.POST, request.FILES, instance=banda)
+        if form.is_valid():
+            form.save()
+            return redirect('representative_dashboard')  # Cambia a tu nombre de vista correspondiente
+    else:
+        form = ImagenRepresentativaForm(instance=banda)
+    return render(request, 'bandas/edit_representative_image.html', {'form': form})
+
+#--------------------------------------------------------------------------------------------------------------

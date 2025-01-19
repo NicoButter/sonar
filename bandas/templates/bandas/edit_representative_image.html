@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Editar Imagen Representativa{% endblock %}
+
+{% block header_title %}Selecciona la Imagen Representativa de: {{ banda.nombre|default:"Sin Banda" }}{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'bandas/css/upload_imagen_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h3>Selecciona la Imagen Representativa:</h3>
+    <div class="row">
+      {% for imagen in banda.imagenes.all %}
+        <div class="col-md-3">
+          <div class="card">
+            <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="Imagen de la Banda">
+            <div class="card-body">
+              <form method="post" action="{% url 'actualizar_imagen_principal' banda.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="imagen_principal" value="{{ imagen.id }}">
+                <button type="submit" class="btn btn-primary btn-sm">Establecer como Representativa</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No hay imágenes disponibles para establecer como representativa.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

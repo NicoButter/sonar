@@ -11,5 +11,6 @@ urlpatterns = [
     path('<int:banda_id>/edit/', views.edit_banda, name='edit_banda'),  # Editar una banda
     path('bandas/<int:banda_id>/upload-imagen/', views.upload_imagen, name='upload_imagen'),
     path('eliminar-imagen/<int:imagen_id>/', views.eliminar_imagen, name='eliminar_imagen'),
-    path('upload-demo/<int:banda_id>/', views.upload_demo, name='upload_demo')
+    path('upload-demo/<int:banda_id>/', views.upload_demo, name='upload_demo'),
+    path('editar-imagen-representativa/<int:banda_id>/', views.actualizar_imagen_representativa, name='actualizar_imagen_representativa'),
 ]

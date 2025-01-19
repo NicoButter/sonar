@@ -4,6 +4,13 @@ from accounts.models import Usuario
 
 #-------------------------------------------------------------------------------------------------------------
 
+class ImagenRepresentativaForm(forms.ModelForm):
+    class Meta:
+        model = Banda
+        fields = ['imagen_principal']
+
+#-------------------------------------------------------------------------------------------------------------
+
 class BandaForm(forms.ModelForm):
     class Meta:
         model = Banda

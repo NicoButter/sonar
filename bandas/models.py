@@ -18,14 +18,18 @@ class EstiloMusical(models.Model):
 def banda_directory_path(instance, filename):
     return os.path.join('bandas', slugify(instance.nombre), 'demos', filename)
 
+def banda_imagen_representativa_path(instance, filename):
+    # Guardar la imagen representativa de la banda en un subdirectorio específico
+    return os.path.join(slugify(instance.nombre), 'imagenes', 'representativa', filename)
+
 def banda_imagen_directory_path(instance, filename):
-    return os.path.join('bandas', slugify(instance.banda.nombre), 'imagenes_de_la_banda', filename)
+    return os.path.join(slugify(instance.banda.nombre), 'imagenes_de_la_banda', filename)
 
 def integrante_imagen_directory_path(instance, filename):
-    return os.path.join('bandas', slugify(instance.banda.nombre), 'imagenes_de_integrantes', filename)
+    return os.path.join(slugify(instance.banda.nombre), 'imagenes_de_integrantes', filename)
 
 def flyer_imagen_directory_path(instance, filename):
-    return os.path.join('bandas', slugify(instance.banda.nombre), 'flyers', filename)
+    return os.path.join(slugify(instance.banda.nombre), 'flyers', filename)
 
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -35,6 +39,7 @@ class Banda(models.Model):
     estilos_musicales = models.ManyToManyField(EstiloMusical)
     biografia = models.TextField()
     demos = models.FileField(upload_to=banda_directory_path, blank=True, null=True)
+    imagen_principal = models.ImageField(upload_to=banda_imagen_representativa_path, blank=True, null=True)  # Imagen representativa
     imagen = models.ImageField(upload_to=banda_imagen_directory_path, blank=True, null=True)
     lugar_ensayo = models.CharField(max_length=200, blank=True, null=True)
     fecha_creacion = models.DateField(auto_now_add=True)
