@@ -3,9 +3,9 @@
     justify-content: center;
     align-items: center;
     flex: 1;
-    min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Ajusta si tienes estas variables */
-    background-color: transparent; /* Hacer el fondo transparente */
-    padding: 20px; /* Agrega un margen interno */
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    background-color: transparent;
+    padding: 20px;
 }
 
 
@@ -67,4 +67,3 @@
 .btn-login:hover {
     background-color: #d32f2f;
 }
-

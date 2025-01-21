@@ -76,13 +76,13 @@ form .form-row {
 .card-body form input,
 .card-body form select,
 .card-body form textarea {
-    width: 100%; /* Asegura que los inputs ocupen todo el ancho disponible */
+    width: 100%;
     padding: 10px;
     margin-top: 5px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
-    box-sizing: border-box; /* Asegura que el padding no haga que el input se desborde */
+    box-sizing: border-box;
 }
 
 /* Ajustar la visualización de la tarjeta para imágenes y demos */

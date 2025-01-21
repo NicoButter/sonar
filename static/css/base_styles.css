@@ -140,8 +140,8 @@ main {
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 0;
-    /* padding: 40px 20px; */
+    padding: 40px 20px;
+    margin-top: 150px;
     /* text-align: center; */
 }
 

@@ -1,20 +1,20 @@
 h2 {
     font-size: 2rem;
-    color: #f44336; /* Rojo brillante */
+    color: #f44336;
     text-align: center;
     margin-bottom: 1rem;
 }
 
 h3 {
     font-size: 1.5rem;
-    color: #007bff; /* Azul */
+    color: #007bff;
     text-align: center;
     margin-bottom: 0.5rem;
 }
 
 p {
     font-size: 1.1rem;
-    color: #ccc; /* Gris claro */
+    color: #ccc;
     text-align: center;
     margin: 0.5rem 0;
     line-height: 1.5;
@@ -22,48 +22,46 @@ p {
 
 .dashboard-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Diseño responsivo */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-top: 1rem;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.85);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-
 .welcome-section {
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
-    border: 2px solid #444; /* Borde gris */
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid #444;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
-    color: #fff; /* Texto blanco */
-    text-align: center; /* Centrar texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
     padding: 20px;
-    margin-bottom: 2rem; /* Separación con las tarjetas */
+    margin-bottom: 2rem;
 }
 
 .welcome-section img {
     display: block;
     margin: 1rem auto;
     border-radius: 10px;
-    border: 3px solid #333; /* Borde oscuro */
+    border: 3px solid #333;
     max-width: 200px;
     height: auto;
 }
 
-
 .card {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo sólido con opacidad */
-    border: 1px solid #333; /* Color de borde más oscuro */
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #333;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #fff; /* Texto blanco */
+    color: #fff;
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Efecto de desplazamiento */
+    transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
 }
 
@@ -74,14 +72,14 @@ p {
 }
 
 .card-title {
-    font-size: 1.5rem; /* Tamaño más grande */
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #f44336; /* Rojo brillante */
+    color: #f44336;
     margin-bottom: 10px;
 }
 
 .card-body p {
-    color: #ccc; /* Texto gris claro */
+    color: #ccc;
     font-size: 1rem;
     margin: 10px 0;
 }
@@ -112,15 +110,13 @@ p {
 }
 
 .btn:hover {
-    background-color: #f44336; /* Color rojo para hover */
-    color: #000; /* Texto negro */
+    background-color: #f44336;
+    color: #000;
 }
 
 hr {
     border: 0;
     height: 2px;
-    background: #444; /* Gris oscuro */
+    background: #444;
     margin: 2rem 0;
 }
-
-
