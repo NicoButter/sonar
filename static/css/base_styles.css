@@ -14,7 +14,7 @@ body {
     background-position: center;
     margin: 0;
     padding: 0;
-  
+
 }
 
 /* Header */
@@ -110,27 +110,33 @@ header nav ul li a:hover {
 
 /* Efecto shrink cuando se hace scroll */
 header.shrunken {
-    padding: 5px 10px;  /* Reduce el padding */
-    background-color: #111;  /* O algún color más oscuro si quieres */
+    padding: 5px 10px;
+    /* Reduce el padding */
+    background-color: #111;
+    /* O algún color más oscuro si quieres */
     background: linear-gradient(to right, #000, rgba(0, 0, 0, 0));
 
 }
 
 header.shrunken .logo-img {
-    max-height: 150px; /* Reducir el tamaño del logo */
+    max-height: 150px;
+    /* Reducir el tamaño del logo */
 }
 
 header.shrunken .page-title h1 {
-    font-size: 20px;  /* Reducir el tamaño de la fuente del título */
+    font-size: 20px;
+    /* Reducir el tamaño de la fuente del título */
 }
 
 header.shrunken .auth-links a {
-    font-size: 16px;  /* Reducir el tamaño de los enlaces */
+    font-size: 16px;
+    /* Reducir el tamaño de los enlaces */
 }
 
 /* También puedes cambiar la altura general del header si lo deseas */
 header.shrunken {
-    height: 60px;  /* Reducir la altura del header */
+    height: 60px;
+    /* Reducir la altura del header */
 }
 
 /* Main content */

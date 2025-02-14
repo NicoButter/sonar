@@ -31,7 +31,6 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilo de las tarjetas */
 .card {
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid #333;
@@ -46,19 +45,16 @@ p {
     transform: translateY(-5px);
 }
 
-/* Títulos dentro de las tarjetas */
 .card-title {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* Espaciado entre los elementos dentro del formulario */
 .card-body form {
     margin-top: 15px;
 }
 
-/* Estilo de los botones dentro de las tarjetas */
 .btn {
     display: block;
     width: 100%;
@@ -67,12 +63,10 @@ p {
     font-size: 1rem;
 }
 
-/* Estilo del formulario para evitar que los elementos se amontonen */
 form .form-row {
     margin-bottom: 10px;
 }
 
-/* Ajustar el tamaño del formulario */
 .card-body form input,
 .card-body form select,
 .card-body form textarea {
@@ -85,7 +79,6 @@ form .form-row {
     box-sizing: border-box;
 }
 
-/* Ajustar la visualización de la tarjeta para imágenes y demos */
 .card-body p {
     margin-bottom: 15px;
     font-size: 1rem;
@@ -96,7 +89,6 @@ form .form-row {
     width: auto;
 }
 
-/* Estilo para la tarjeta de biografía */
 .card-body form textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -108,7 +100,6 @@ form .form-row {
     width: auto;
 }
 
-/* Estilo para la tarjeta de integrantes */
 .card-body form .form-group {
     margin-bottom: 15px;
 }

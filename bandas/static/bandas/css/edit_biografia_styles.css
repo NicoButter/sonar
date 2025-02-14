@@ -15,7 +15,6 @@ h2 {
     margin-bottom: 1rem;
 }
 
-/* Estilo del formulario */
 form {
     display: flex;
     flex-direction: column;
@@ -26,7 +25,6 @@ form .form-row {
     margin-bottom: 10px;
 }
 
-/* Estilo del campo de texto (biografía) */
 textarea {
     width: 100%;
     padding: 10px;
@@ -38,7 +36,6 @@ textarea {
     resize: vertical;
 }
 
-/* Estilo de los botones */
 button {
     padding: 10px;
     font-size: 1rem;
@@ -54,7 +51,6 @@ button:hover {
     background-color: #d32f2f;
 }
 
-/* Espaciado y estilo de la parte inferior */
 body {
     padding-bottom: 20px;
 }

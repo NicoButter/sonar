@@ -3,7 +3,6 @@
     margin-top: 50px;
 }
 
-/* Estilos para el Formulario */
 form {
     background-color: #f9f9f9;
     padding: 15px;
@@ -40,7 +39,6 @@ form button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos para las Imágenes Subidas */
 h3 {
     margin-top: 30px;
     font-size: 24px;
@@ -91,7 +89,6 @@ h3 {
     border-color: #c82333;
 }
 
-/* Estilos cuando no hay imágenes */
 p {
     text-align: center;
     font-style: italic;
