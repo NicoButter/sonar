@@ -1,4 +1,3 @@
-/* Estilos generales */
 .container {
     width: 80%;
     max-width: 1000px;
@@ -17,7 +16,6 @@
     margin-bottom: 20px;
 }
 
-/* Estilos de los formularios */
 .banda-form {
     display: flex;
     flex-direction: column;
@@ -37,7 +35,6 @@
     margin-bottom: 15px;
 }
 
-/* Estilos para los campos de formulario */
 input,
 textarea,
 select {
@@ -54,7 +51,6 @@ input[type="file"] {
     padding: 5px;
 }
 
-/* Estilos del botón */
 .btn-submit {
     background-color: #4CAF50;
     color: white;
