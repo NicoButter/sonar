@@ -85,8 +85,8 @@ DATABASES = {
         'NAME': 'sonar_db',
         'USER': 'sonar',
         'PASSWORD': 'sonar010203',
-        'HOST': 'localhost',  # O el host de tu servidor PostgreSQL
-        'PORT': '5432',       # Puerto predeterminado de PostgreSQL
+        'HOST': 'localhost',
+        'PORT': '5432',       
     }
 }
 
