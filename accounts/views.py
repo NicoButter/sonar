@@ -18,7 +18,7 @@ def landing_page(request):
     Returns:
         HttpResponse con el template de la landing page.
     """
-    return render(request, 'landing_page.html')
+    return render(request, 'accounts/landing_page.html')
 
 
 def login_view(request):
@@ -53,10 +53,10 @@ def login_view(request):
 
         else:
             return render(
-                request, 'login.html',
+                request, 'accounts/login.html',
                 {'error': 'Nombre de usuario o contraseña incorrectos.'}
             )
-    return render(request, 'login.html')
+    return render(request, 'accounts/login.html')
 
 
 def logout_view(request):

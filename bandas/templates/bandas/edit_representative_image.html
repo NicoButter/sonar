@@ -19,7 +19,7 @@
           <div class="card">
             <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="Imagen de la Banda">
             <div class="card-body">
-              <form method="post" action="{% url 'actualizar_imagen_principal' banda.id %}">
+              <form method="post" action="{% url 'actualizar_imagen_representativa' banda.id %}">
                 {% csrf_token %}
                 <input type="hidden" name="imagen_principal" value="{{ imagen.id }}">
                 <button type="submit" class="btn btn-primary btn-sm">Establecer como Representativa</button>

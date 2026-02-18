@@ -58,8 +58,11 @@ def banda_detail(request, banda_id):
 # Creación y edición
 # ---------------------------------------------------------------------------
 
+@login_required
 def crear_integrante(request):
     """Crea un nuevo integrante mediante un formulario.
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -138,9 +141,9 @@ def create_banda(request):
                 banda.imagen.save('no-image.png', File(f))
 
             banda.save()
-            return redirect('representative_dashboard.html')
+            return redirect('representative_dashboard')
     else:
-        return render(request, 'create_banda.html')
+        return render(request, 'bandas/create_banda.html')
 
 
 # ---------------------------------------------------------------------------
@@ -174,8 +177,11 @@ def eliminar_banda(request, banda_id):
 # Gestión de imágenes
 # ---------------------------------------------------------------------------
 
+@login_required
 def upload_imagen(request, banda_id):
     """Sube imágenes adicionales para una banda (máximo 5).
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -206,8 +212,11 @@ def upload_imagen(request, banda_id):
     })
 
 
+@login_required
 def eliminar_imagen(request, imagen_id):
     """Elimina una imagen de la galería de una banda.
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -223,8 +232,11 @@ def eliminar_imagen(request, imagen_id):
     return redirect('upload_imagen', banda_id=banda_id)
 
 
+@login_required
 def actualizar_imagen_representativa(request, banda_id):
     """Actualiza la imagen representativa de una banda.
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -281,8 +293,11 @@ def upload_demo(request, banda_id):
 # Biografía e integrantes
 # ---------------------------------------------------------------------------
 
+@login_required
 def editar_biografia(request, banda_id):
     """Edita la biografía de una banda.
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -308,8 +323,11 @@ def editar_biografia(request, banda_id):
     )
 
 
+@login_required
 def editar_integrantes(request, banda_id):
     """Agrega un nuevo integrante a una banda.
+
+    Requiere autenticación.
 
     Args:
         request: Objeto HttpRequest de Django.
