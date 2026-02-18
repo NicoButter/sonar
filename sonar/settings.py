@@ -81,14 +81,22 @@ WSGI_APPLICATION = "sonar.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sonar_db',
-        'USER': 'sonar',
-        'PASSWORD': 'sonar010203',
-        'HOST': 'localhost',
-        'PORT': '5432',       
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Configuración para PostgreSQL (comentada para desarrollo)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sonar_db',
+#         'USER': 'sonar',
+#         'PASSWORD': 'sonar010203',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
