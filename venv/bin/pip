@@ -1,4 +1,4 @@
-#!/home/lordcommander/proyectos_2024/sonar/venv/bin/python3
+#!/home/lordcommander/proyectos_2024/sonar/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
