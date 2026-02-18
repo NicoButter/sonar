@@ -1,3 +1,3 @@
-from django.contrib import admin
+"""Configuración del panel de administración para la aplicación bandas."""
 
-# Register your models here.
+from django.contrib import admin  # noqa: F401

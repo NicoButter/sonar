@@ -1,3 +1,3 @@
-from django.test import TestCase
+"""Tests para la aplicación accounts."""
 
-# Create your tests here.
+from django.test import TestCase  # noqa: F401
