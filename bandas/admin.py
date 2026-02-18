@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import Banda, EstiloMusical, Flyer, ImagenBanda, Integrante
+from .models import Banda, EstiloMusical, Flyer, ImagenBanda, Integrante, Evento
 
 
 class IntegranteInline(admin.TabularInline):
@@ -61,9 +61,11 @@ class ImagenBandaAdmin(admin.ModelAdmin):
     list_filter = ('banda',)
 
 
-@admin.register(Flyer)
-class FlyerAdmin(admin.ModelAdmin):
-    """Configuración del admin para el modelo Flyer."""
+@admin.register(Evento)
+class EventoAdmin(admin.ModelAdmin):
+    """Configuración del admin para el modelo Evento."""
 
-    list_display = ('banda', 'descripcion')
-    list_filter = ('banda',)
+    list_display = ('titulo', 'fecha', 'ubicacion', 'organizador', 'fecha_creacion')
+    list_filter = ('fecha', 'ubicacion')
+    search_fields = ('titulo', 'descripcion', 'ubicacion')
+    date_hierarchy = 'fecha'

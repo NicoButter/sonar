@@ -8,9 +8,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
+from bandas.models import Banda, Evento
+
 
 def landing_page(request):
     """Renderiza la página de aterrizaje principal del sitio.
+
+    Muestra el top 10 de bandas más descargadas y los últimos
+    eventos musicales locales.
 
     Args:
         request: Objeto HttpRequest de Django.
@@ -18,7 +23,21 @@ def landing_page(request):
     Returns:
         HttpResponse con el template de la landing page.
     """
-    return render(request, 'accounts/landing_page.html')
+    # Top 10 bandas por descargas (solo con demos disponibles)
+    top_bandas = Banda.objects.filter(
+        demos__isnull=False,
+        estado='aprobado'
+    ).order_by('-descargas')[:10]
+
+    # Últimos 5 eventos
+    eventos_recientes = Evento.objects.all()[:5]
+
+    context = {
+        'top_bandas': top_bandas,
+        'eventos_recientes': eventos_recientes,
+    }
+
+    return render(request, 'accounts/landing_page.html', context)
 
 
 def login_view(request):

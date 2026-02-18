@@ -11,6 +11,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.files import File
+from django.http import HttpResponse, Http404
+from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import (
@@ -353,3 +355,30 @@ def editar_integrantes(request, banda_id):
         request, 'bandas/edit_integrantes.html',
         {'form': form, 'banda': banda},
     )
+
+
+def descargar_demo(request, banda_id):
+    """Sirve el archivo de demo de una banda y cuenta la descarga.
+
+    Args:
+        request: Objeto HttpRequest de Django.
+        banda_id: ID de la banda.
+
+    Returns:
+        HttpResponse con el archivo de audio o Http404 si no existe.
+
+    Raises:
+        Http404: Si la banda no tiene demo o no existe.
+    """
+    banda = get_object_or_404(Banda, id=banda_id)
+
+    if not banda.demos:
+        raise Http404("Demo no disponible")
+
+    # Incrementar contador de descargas
+    Banda.objects.filter(id=banda_id).update(descargas=F('descargas') + 1)
+
+    # Servir el archivo
+    response = HttpResponse(banda.demos.read(), content_type='audio/mpeg')
+    response['Content-Disposition'] = f'attachment; filename="{banda.nombre}_demo.mp3"'
+    return response

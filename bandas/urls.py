@@ -39,4 +39,8 @@ urlpatterns = [
         'eliminar-imagen/<int:imagen_id>/',
         views.eliminar_imagen, name='eliminar_imagen',
     ),
+    path(
+        '<int:banda_id>/descargar/',
+        views.descargar_demo, name='descargar_demo',
+    ),
 ]

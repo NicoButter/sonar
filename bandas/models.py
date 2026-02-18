@@ -156,6 +156,7 @@ class Banda(models.Model):
     estado = models.CharField(
         max_length=20, choices=ESTADOS, default='pendiente',
     )
+    descargas = models.PositiveIntegerField(default=0)
 
     def clean(self):
         """Valida que el representante tenga el rol correspondiente.
@@ -257,3 +258,35 @@ class Flyer(models.Model):
     def __str__(self):
         """Retorna una descripción con el nombre de la banda."""
         return f"Flyer de {self.banda.nombre}"
+
+
+class Evento(models.Model):
+    """Modelo para almacenar eventos musicales locales.
+
+    Attributes:
+        titulo: Título del evento.
+        descripcion: Descripción detallada del evento.
+        fecha: Fecha y hora del evento.
+        ubicacion: Lugar donde se realiza el evento.
+        organizador: Usuario que creó el evento (opcional).
+        fecha_creacion: Fecha de creación del evento (auto-generada).
+    """
+
+    titulo = models.CharField(max_length=200)
+    descripcion = models.TextField()
+    fecha = models.DateTimeField()
+    ubicacion = models.CharField(max_length=200)
+    organizador = models.ForeignKey(
+        Usuario, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name='eventos_organizados',
+    )
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """Meta opciones para Evento."""
+
+        ordering = ['-fecha']
+
+    def __str__(self):
+        """Retorna el título del evento."""
+        return self.titulo
