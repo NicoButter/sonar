@@ -31,7 +31,7 @@
 1. **Cloná el repositorio:**
 
 ```bash
-git clone https://github.com/tu_usuario/sonar.git
+git clone https://github.com/nicobutter/sonar.git
 cd sonar
 ```
 
