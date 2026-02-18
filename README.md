@@ -28,39 +28,73 @@
 
 ## ⚙️ Instalación local (modo desarrollador)
 
-1. Cloná el repositorio:
+1. **Cloná el repositorio:**
 
 ```bash
 git clone https://github.com/tu_usuario/sonar.git
 cd sonar
 ```
 
-Activá tu entorno virtual (recomendado):
+2. **Activá tu entorno virtual (recomendado):**
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # En Linux/Mac
+# o
+venv\Scripts\activate     # En Windows
 ```
 
-Instalá las dependencias:
+3. **Instalá las dependencias:**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Configurá PostgreSQL y las variables de entorno (.env o settings.py modificado).
+4. **Configurá las variables de entorno:**
 
-Ejecutá migraciones:
+Copia el archivo de ejemplo y configúralo:
 
 ```bash
+cp .env.example .env
+```
+
+Edita `.env` con tus configuraciones locales. Para desarrollo, puedes usar los valores por defecto.
+
+**Variables importantes:**
+- `SECRET_KEY`: Cambia esto en producción
+- `DEBUG`: `True` para desarrollo, `False` para producción
+- `DATABASE_*`: Configuración de base de datos (SQLite por defecto)
+
+5. **Ejecutá las migraciones:**
+
+```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
-¡Y a sonar!
+6. **Creá un superusuario (opcional):**
+
+```bash
+python manage.py createsuperuser
+```
+
+7. **¡Y a sonar!**
 
 ```bash
 python manage.py runserver
 ```
+
+Visita `http://127.0.0.1:8000` en tu navegador.
+
+## 🔧 Configuración de producción
+
+Para producción, asegúrate de:
+
+- Cambiar `DEBUG=False`
+- Configurar `SECRET_KEY` segura
+- Usar PostgreSQL en lugar de SQLite
+- Configurar email real
+- Establecer `ALLOWED_HOSTS` apropiadamente
 
 🤘 Contribuciones
 ¡Toda colaboración es bienvenida! Ya sea codificando, diseñando o compartiendo la app con bandas amigas. Mandá tu PR o escribime por cualquier idea que tengas.
