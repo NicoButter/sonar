@@ -13,7 +13,7 @@ body {
     background-size: cover;
     background-position: center;
     margin: 0;
-    padding: 0;
+    padding: 150px 0 0 0;
 
 }
 
@@ -33,6 +33,7 @@ header {
     transition: all 0.3s ease;
     background: linear-gradient(to right, #000, rgba(0, 0, 0, 0));
     z-index: 1000;
+    height: 150px;
 }
 
 .header-nav {
@@ -110,22 +111,6 @@ header.shrunken {
     padding: 5px 10px;
     background-color: #111;
     background: linear-gradient(to right, #000, rgba(0, 0, 0, 0));
-
-}
-
-header.shrunken .logo-img {
-    max-height: 150px;
-}
-
-header.shrunken .page-title h1 {
-    font-size: 20px;
-}
-
-header.shrunken .auth-links a {
-    font-size: 16px;
-}
-
-header.shrunken {
     height: 60px;
 }
 
@@ -136,7 +121,6 @@ main {
     align-items: center;
     margin: 0;
     padding: 40px 20px;
-    margin-top: 150px;
 }
 
 h1 {
