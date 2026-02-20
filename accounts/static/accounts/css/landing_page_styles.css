@@ -1,5 +1,7 @@
 #landing-content {
     text-align: center;
+    padding: 0 20px;
+    margin-bottom: 30px;
 }
 
 #landing-content h2 {
@@ -220,6 +222,15 @@
 @media (max-width: 768px) {
     .bandas-grid, .events-grid {
         grid-template-columns: 1fr;
+    }
+
+    .events-grid {
+        gap: 20px;
+    }
+
+    .event-header {
+        flex-direction: column;
+        gap: 8px;
     }
     
     .section-title {
