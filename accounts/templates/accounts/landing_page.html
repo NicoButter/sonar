@@ -11,88 +11,107 @@
 {% block header_title %}¡Bienvenido a Sonar!{% endblock %}
     
 {% block content %}
-    <div id="landing-content">
-        <p>Conéctate con la música que amas en Río Gallegos y alrededores.</p>
+    <div class="landing-layout">
+        <div class="landing-main">
+            <section class="hero-section" aria-label="Sección principal">
+                <div class="hero-content container">
+                    <h2 class="hero-title">Descubrí la escena musical de Río Gallegos</h2>
+                    <p class="hero-text">
+                        Bandas locales, eventos y demos en un solo lugar para conectar artistas y público.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="{% url 'banda_list' %}" class="btn-primary">Explorar Bandas</a>
+                        <a href="{% url 'login' %}" class="btn-secondary">Ingresar</a>
+                    </div>
+                </div>
+            </section>
+
+            <div id="landing-content">
+                <p>Conéctate con la música que amas en Río Gallegos y alrededores.</p>
+            </div>
+
+            <!-- Sección Eventos Recientes -->
+            <section class="events-section">
+                <div class="container">
+                    <h2 class="section-title">📅 Eventos Recientes</h2>
+                    <p class="section-subtitle">Novedades de la escena musical en Santa Cruz</p>
+
+                    {% if eventos_recientes %}
+                        <div class="events-grid">
+                            {% for evento in eventos_recientes %}
+                                <div class="event-card">
+                                    <div class="event-header">
+                                        <h3>{{ evento.titulo }}</h3>
+                                        <p class="event-date">{{ evento.fecha|date:"d/m/Y H:i" }}</p>
+                                    </div>
+                                    <div class="event-location">
+                                        📍 {{ evento.ubicacion }}
+                                    </div>
+                                    <div class="event-description">
+                                        {{ evento.descripcion|truncatechars:150 }}
+                                    </div>
+                                    {% if evento.organizador %}
+                                        <p class="event-organizer">Organizado por: {{ evento.organizador.username }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-content">No hay eventos programados actualmente.</p>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- Sección Call to Action -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>¿Sos músico?</h2>
+                    <p>Registra tu banda y forma parte de la comunidad musical de Río Gallegos.</p>
+                    <a href="{% url 'login' %}" class="btn-primary">Iniciar Sesión</a>
+                    <a href="{% url 'banda_list' %}" class="btn-secondary">Ver Todas las Bandas</a>
+                </div>
+            </section>
+        </div>
+
+        <aside class="landing-top10" aria-label="Top 10 descargas">
+            <!-- Sección Top 10 Descargas -->
+            <section class="top-downloads-section">
+                <div class="container">
+                    <h2 class="section-title">🎵 Top 10 Descargas</h2>
+                    <p class="section-subtitle">Las bandas más escuchadas de la escena local</p>
+
+                    {% if top_bandas %}
+                        <div class="bandas-grid">
+                            {% for banda in top_bandas %}
+                                <div class="banda-card">
+                                    <div class="banda-image">
+                                        {% if banda.imagen_principal %}
+                                            <img src="{{ banda.imagen_principal.url }}" alt="Imagen de {{ banda.nombre }}">
+                                        {% else %}
+                                            <img src="{% static 'images/no-image.png' %}" alt="Sin imagen">
+                                        {% endif %}
+                                    </div>
+                                    <div class="banda-info">
+                                        <h3>{{ banda.nombre }}</h3>
+                                        <p class="banda-descargas">{{ banda.descargas }} descargas</p>
+                                        {% if banda.demos %}
+                                            <a href="{% url 'descargar_demo' banda.id %}" class="btn-download">
+                                                📥 Descargar Demo
+                                            </a>
+                                        {% endif %}
+                                        <a href="{% url 'banda_detail' banda.id %}" class="btn-view">
+                                            Ver Banda
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-content">Aún no hay demos disponibles. ¡Sé el primero en subir uno!</p>
+                    {% endif %}
+                </div>
+            </section>
+        </aside>
     </div>
-
-    <!-- Sección Top 10 Descargas -->
-    <section class="top-downloads-section">
-        <div class="container">
-            <h2 class="section-title">🎵 Top 10 Descargas</h2>
-            <p class="section-subtitle">Las bandas más escuchadas de la escena local</p>
-            
-            {% if top_bandas %}
-                <div class="bandas-grid">
-                    {% for banda in top_bandas %}
-                        <div class="banda-card">
-                            <div class="banda-image">
-                                {% if banda.imagen_principal %}
-                                    <img src="{{ banda.imagen_principal.url }}" alt="Imagen de {{ banda.nombre }}">
-                                {% else %}
-                                    <img src="{% static 'images/no-image.png' %}" alt="Sin imagen">
-                                {% endif %}
-                            </div>
-                            <div class="banda-info">
-                                <h3>{{ banda.nombre }}</h3>
-                                <p class="banda-descargas">{{ banda.descargas }} descargas</p>
-                                {% if banda.demos %}
-                                    <a href="{% url 'descargar_demo' banda.id %}" class="btn-download">
-                                        📥 Descargar Demo
-                                    </a>
-                                {% endif %}
-                                <a href="{% url 'banda_detail' banda.id %}" class="btn-view">
-                                    Ver Banda
-                                </a>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="no-content">Aún no hay demos disponibles. ¡Sé el primero en subir uno!</p>
-            {% endif %}
-        </div>
-    </section>
-
-    <!-- Sección Eventos Recientes -->
-    <section class="events-section">
-        <div class="container">
-            <h2 class="section-title">📅 Eventos Recientes</h2>
-            <p class="section-subtitle">Novedades de la escena musical en Santa Cruz</p>
-            
-            {% if eventos_recientes %}
-                <div class="events-grid">
-                    {% for evento in eventos_recientes %}
-                        <div class="event-card">
-                            <div class="event-header">
-                                <h3>{{ evento.titulo }}</h3>
-                                <p class="event-date">{{ evento.fecha|date:"d/m/Y H:i" }}</p>
-                            </div>
-                            <div class="event-location">
-                                📍 {{ evento.ubicacion }}
-                            </div>
-                            <div class="event-description">
-                                {{ evento.descripcion|truncatechars:150 }}
-                            </div>
-                            {% if evento.organizador %}
-                                <p class="event-organizer">Organizado por: {{ evento.organizador.username }}</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="no-content">No hay eventos programados actualmente.</p>
-            {% endif %}
-        </div>
-    </section>
-
-    <!-- Sección Call to Action -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>¿Sos músico?</h2>
-            <p>Registra tu banda y forma parte de la comunidad musical de Río Gallegos.</p>
-            <a href="{% url 'login' %}" class="btn-primary">Iniciar Sesión</a>
-            <a href="{% url 'banda_list' %}" class="btn-secondary">Ver Todas las Bandas</a>
-        </div>
-    </section>
 {% endblock %}
     

@@ -4,6 +4,59 @@
     margin-bottom: 30px;
 }
 
+.landing-layout {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 420px;
+}
+
+.landing-main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-section {
+    margin-bottom: 32px;
+}
+
+.hero-content {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
+    border: 1px solid rgba(244, 67, 54, 0.25);
+    border-radius: 12px;
+    text-align: center;
+    padding: 46px 30px;
+}
+
+.hero-title {
+    margin: 0 0 14px;
+    font-size: 2.7rem;
+    color: #f44336;
+}
+
+.hero-text {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e6e6e6;
+}
+
+.hero-actions {
+    margin-top: 24px;
+}
+
+.landing-top10 {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    width: 380px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    z-index: 900;
+}
+
 #landing-content h2 {
     font-size: 3rem;
     margin-bottom: 20px;
@@ -21,6 +74,12 @@
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: white;
     margin-bottom: 40px;
+}
+
+.landing-top10 .top-downloads-section {
+    padding: 20px 0;
+    margin-bottom: 0;
+    border-radius: 10px;
 }
 
 .top-downloads-section:nth-child(even), .events-section:nth-child(even) {
@@ -54,6 +113,11 @@
     gap: 30px;
 }
 
+.landing-top10 .bandas-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
 .banda-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -69,6 +133,10 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+.landing-top10 .banda-image img {
+    height: 140px;
 }
 
 .banda-info {
@@ -220,6 +288,35 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .landing-layout {
+        padding-right: 0;
+    }
+
+    .landing-main {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .landing-top10 {
+        position: static;
+        width: 100%;
+        max-height: none;
+        overflow: visible;
+        margin: 0 auto 20px;
+    }
+
+    .hero-content {
+        padding: 34px 18px;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
     .bandas-grid, .events-grid {
         grid-template-columns: 1fr;
     }
