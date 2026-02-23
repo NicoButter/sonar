@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #121212;
     color: #fff;
     display: flex;
@@ -72,8 +72,9 @@ header {
 
 .page-title h1 {
     color: #fff;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 2.1rem;
+    font-weight: 800;
     letter-spacing: 1.2px;
     margin: 0;
     line-height: 1;
@@ -140,7 +141,7 @@ header.shrunken .logo-img {
 }
 
 header.shrunken .page-title h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 }
 
 main {
@@ -151,8 +152,9 @@ main {
 }
 
 h1 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 3rem;
+    font-weight: 800;
     color: #f44336;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -161,11 +163,12 @@ h1 {
 
 h2,
 h3 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 2rem;
+    font-weight: 700;
     color: #fff;
     margin-bottom: 10px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.5px;
 }
 
 button {
@@ -240,7 +243,7 @@ button:hover {
 }
 
 .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 3.5rem;
     letter-spacing: 4px;
     margin: 0;
@@ -271,7 +274,7 @@ button:hover {
 }
 
 .footer-section h4 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 1.4rem;
     letter-spacing: 2px;
     margin: 0 0 20px 0;

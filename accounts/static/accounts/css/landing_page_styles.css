@@ -1,3 +1,4 @@
+/* ===== Landing Layout ===== */
 #landing-content {
     text-align: center;
     padding: 0 20px;
@@ -6,17 +7,21 @@
 
 .landing-layout {
     width: 100%;
-    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
     box-sizing: border-box;
-    padding-right: 420px;
+    align-items: flex-start;
 }
 
 .landing-main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 20px;
+    flex: 1;
+    min-width: 0;
 }
 
+/* ===== Hero Section ===== */
 .hero-section {
     margin-bottom: 32px;
 }
@@ -38,42 +43,65 @@
 .hero-text {
     margin: 0 auto;
     max-width: 700px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.7;
-    color: #e6e6e6;
+    color: #d4d4d4;
 }
 
 .hero-actions {
     margin-top: 24px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+/* ===== Sidebar Top 10 ===== */
 .landing-top10 {
-    position: fixed;
+    width: 360px;
+    flex-shrink: 0;
+    position: sticky;
     top: 130px;
-    right: 20px;
-    width: 380px;
+    align-self: flex-start;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
     z-index: 900;
 }
 
+/* Scrollbar styling for sidebar */
+.landing-top10::-webkit-scrollbar {
+    width: 5px;
+}
+.landing-top10::-webkit-scrollbar-track {
+    background: transparent;
+}
+.landing-top10::-webkit-scrollbar-thumb {
+    background: rgba(244, 67, 54, 0.3);
+    border-radius: 10px;
+}
+
+/* ===== Landing content intro ===== */
 #landing-content h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #f44336; /* Color destacado */
+    color: #f44336;
 }
 
 #landing-content p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.8;
+    color: #bbb;
 }
 
-/* Secciones principales */
-.top-downloads-section, .events-section, .cta-section {
-    padding: 60px 0;
+/* ===== Sections ===== */
+.top-downloads-section,
+.events-section,
+.cta-section {
+    padding: 50px 0;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: white;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    border-radius: 12px;
 }
 
 .landing-top10 .top-downloads-section {
@@ -82,7 +110,8 @@
     border-radius: 10px;
 }
 
-.top-downloads-section:nth-child(even), .events-section:nth-child(even) {
+.top-downloads-section:nth-child(even),
+.events-section:nth-child(even) {
     background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
 }
 
@@ -93,7 +122,7 @@
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 10px;
     color: #f44336;
@@ -101,68 +130,74 @@
 
 .section-subtitle {
     text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    color: #ccc;
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+    color: #aaa;
 }
 
-/* Top Descargas */
+/* ===== Top Descargas ===== */
 .bandas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .landing-top10 .bandas-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
 }
 
 .banda-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .banda-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .banda-image img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 0;
 }
 
 .landing-top10 .banda-image img {
-    height: 140px;
+    height: 130px;
 }
 
 .banda-info {
-    padding: 20px;
+    padding: 18px;
 }
 
 .banda-info h3 {
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
     color: #f44336;
+    font-size: 1.15rem;
 }
 
 .banda-descargas {
-    color: #ccc;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
 }
 
-.btn-download, .btn-view {
+.btn-download,
+.btn-view {
     display: inline-block;
     padding: 8px 16px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 8px;
+    margin-bottom: 8px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-download {
@@ -172,36 +207,45 @@
 
 .btn-download:hover {
     background: #d32f2f;
+    transform: translateY(-1px);
 }
 
 .btn-view {
-    background: #666;
-    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .btn-view:hover {
-    background: #555;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
-/* Eventos */
+/* ===== Eventos ===== */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
 }
 
 .event-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 10px;
-    padding: 20px;
+    padding: 22px;
     border-left: 4px solid #f44336;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-2px);
 }
 
 .event-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+    gap: 12px;
 }
 
 .event-header h3 {
@@ -210,53 +254,60 @@
 }
 
 .event-date {
-    color: #ccc;
-    font-size: 0.9rem;
+    color: #aaa;
+    font-size: 0.85rem;
+    white-space: nowrap;
 }
 
 .event-location {
-    color: #fff;
-    font-weight: bold;
+    color: #e0e0e0;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
 .event-description {
-    color: #ddd;
+    color: #ccc;
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 }
 
 .event-organizer {
-    color: #ccc;
-    font-size: 0.9rem;
+    color: #999;
+    font-size: 0.85rem;
     margin: 0;
 }
 
-/* Call to Action */
+/* ===== Call to Action ===== */
 .cta-section {
     text-align: center;
-    background: #f44336 !important;
+    background: linear-gradient(135deg, #e53935 0%, #f44336 50%, #ff5722 100%) !important;
     margin-bottom: 0;
+    border-radius: 12px;
 }
 
 .cta-section h2 {
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.btn-primary, .btn-secondary {
+/* ===== Buttons ===== */
+.btn-primary,
+.btn-secondary {
     display: inline-block;
-    padding: 12px 24px;
-    margin: 0 10px;
+    padding: 12px 28px;
+    margin: 0 8px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
@@ -265,36 +316,35 @@
 }
 
 .btn-primary:hover {
-    background: #f0f0f0;
+    background: #f5f5f5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
 }
 
-/* Mensaje sin contenido */
+/* ===== No Content ===== */
 .no-content {
     text-align: center;
-    color: #ccc;
+    color: #999;
     font-style: italic;
-    padding: 40px;
+    padding: 40px 20px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
     .landing-layout {
-        padding-right: 0;
-    }
-
-    .landing-main {
-        max-width: 100%;
-        padding: 0 10px;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .landing-top10 {
@@ -302,7 +352,12 @@
         width: 100%;
         max-height: none;
         overflow: visible;
-        margin: 0 auto 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-main {
+        padding: 0;
     }
 
     .hero-content {
@@ -310,41 +365,50 @@
     }
 
     .hero-title {
-        font-size: 2.1rem;
+        font-size: 2rem;
     }
 
     .hero-text {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
-    .bandas-grid, .events-grid {
+    .bandas-grid,
+    .events-grid {
         grid-template-columns: 1fr;
     }
 
     .events-grid {
-        gap: 20px;
+        gap: 16px;
     }
 
     .event-header {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
-    
+
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
-    
-    .btn-download, .btn-view {
+
+    .btn-download,
+    .btn-view {
         display: block;
         width: 100%;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         margin-right: 0;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         display: block;
         width: 100%;
         margin: 10px 0;
+        text-align: center;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
