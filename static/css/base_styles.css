@@ -375,9 +375,18 @@ button:hover {
 .footer-bottom {
     border-top: 1px solid rgba(244, 67, 54, 0.15);
     padding: 25px 24px;
-    text-align: center;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
+}
+
+.footer-credits {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .footer-copyright {
@@ -385,17 +394,54 @@ button:hover {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.5px;
+    flex: 1;
+    text-align: left;
 }
 
-.dev-name {
-    color: #f44336;
-    font-weight: 600;
+.footer-dev-credit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+}
+
+.footer-dev-credit span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dev-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
-    cursor: default;
 }
 
-.dev-name:hover {
-    text-shadow: 0 0 10px rgba(244, 67, 54, 0.6);
+.dev-logo {
+    max-height: 32px;
+    height: auto;
+    filter: brightness(0.95);
+    transition: all 0.3s ease;
+}
+
+.dev-logo-link:hover .dev-logo {
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(244, 67, 54, 0.4));
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .footer-credits {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-copyright {
+        text-align: center;
+    }
+    
+    .footer-dev-credit {
+        justify-content: center;
+    }
 }
 
 /* Responsive Footer */

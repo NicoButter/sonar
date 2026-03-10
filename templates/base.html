@@ -81,7 +81,15 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright">© 2024 Sonar | Todos los derechos reservados | Desarrollado por <span class="dev-name">Nicolas Butterfield</span></p>
+            <div class="footer-credits">
+                <p class="footer-copyright">© 2024 Sonar | Todos los derechos reservados</p>
+                <div class="footer-dev-credit">
+                    <span>Desarrollado por</span>
+                    <a href="#" class="dev-logo-link">
+                        <img src="{% static 'images/footer/butterstudio_logo.png' %}" alt="BtterStudio" class="dev-logo">
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="{% static 'js/header_shrink.js' %}"></script>

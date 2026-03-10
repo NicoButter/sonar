@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "sonar.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
