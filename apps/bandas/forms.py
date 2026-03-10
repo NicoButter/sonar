@@ -6,7 +6,7 @@ biografías, integrantes e imágenes representativas.
 
 from django import forms
 
-from accounts.models import Usuario  # noqa: F401
+from apps.accounts.models import Usuario  # noqa: F401
 from .models import Banda, EstiloMusical, Integrante  # noqa: F401
 
 

@@ -1,10 +1,10 @@
-"""Configuración de la aplicación bandas."""
+"""Configuración de la aplicación dashboards."""
 
 from django.apps import AppConfig
 
 
-class BandasConfig(AppConfig):
-    """Clase de configuración para la aplicación bandas.
+class DashboardsConfig(AppConfig):
+    """Clase de configuración para la aplicación dashboards.
 
     Attributes:
         default_auto_field: Tipo de campo auto-incremental por defecto.
@@ -12,4 +12,4 @@ class BandasConfig(AppConfig):
     """
 
     default_auto_field = "django.db.models.BigAutoField"
-    name = "bandas"
+    name = "apps.dashboards"

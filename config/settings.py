@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "accounts",
-    "bandas",
-    "dashboards"
+    "apps.accounts",
+    "apps.bandas",
+    "apps.dashboards"
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "sonar.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {

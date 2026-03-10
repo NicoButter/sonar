@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
-from bandas.models import Banda, Evento
+from apps.bandas.models import Banda, Evento
 
 
 def landing_page(request):

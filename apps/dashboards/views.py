@@ -6,7 +6,7 @@ de representantes, administradores y moderadores.
 
 from django.shortcuts import render
 
-from accounts.decorators import (
+from apps.accounts.decorators import (
     admin_required,
     moderator_required,
     representative_required,

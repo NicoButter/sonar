@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('accounts.urls')),  # URLs de la app accounts (incluye login, logout, etc.)
-    path('dashboard/', include('dashboards.urls')),  # URLs para los dashboards
-    path('bandas/', include('bandas.urls')),  # URLs relacionadas con bandas
+    path('', include('apps.accounts.urls')),  # URLs de la app accounts (incluye login, logout, etc.)
+    path('dashboard/', include('apps.dashboards.urls')),  # URLs para los dashboards
+    path('bandas/', include('apps.bandas.urls')),  # URLs relacionadas con bandas
 ]
 
 if settings.DEBUG:
