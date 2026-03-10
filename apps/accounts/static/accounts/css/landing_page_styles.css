@@ -21,7 +21,7 @@
 /* ===== Hero Section ===== */
 .hero-section {
     width: 100vw;
-    height: 85vh;
+    height: 100vh;
     position: relative;
     margin: -110px 0 0 0;
     padding: 0;
@@ -55,7 +55,7 @@
 
 .hero-content {
     position: absolute;
-    top: 50%;
+    top: 72%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
